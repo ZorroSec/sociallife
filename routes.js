@@ -11,7 +11,17 @@ app.use(express.static('css'))
 app.get('/', (rq, res)=>{
     fetch("https://api.ipify.org/?format=json").then(response=>{
         response.json().then(data=>{
-            return data
+            connection.query(`SELECT * FROM users WHERE ip = '${data['ip']}'`, (results, fields)=>{
+                if(fields[0]['ip'] === data['ip']){
+                    res.json({
+                        status: "success"
+                    })
+                } else {
+                    res.json({
+                        status: "error"
+                    })
+                }
+            })
         })
     })
     // res.json({
