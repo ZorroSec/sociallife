@@ -1,8 +1,7 @@
 import express from 'express'
 import app from "./config/config.js";
 import connection from "./models/database.js";
-
-
+import Post from './post/post.js';
 
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
