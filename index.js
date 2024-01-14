@@ -3,7 +3,6 @@ import express from 'express'
 import { Sequelize } from 'sequelize'
 import { createConnection } from 'mysql2'
 import connection from './models/database.js'
-import Sequelize from 'sequelize'
 import sequelize from './sequelize/sequelize.js'
 import './routes.js'
 
