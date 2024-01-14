@@ -4,6 +4,7 @@ import { Sequelize } from 'sequelize'
 import { createConnection } from 'mysql2'
 import connection from './models/database.js'
 import sequelize from './sequelize/sequelize.js'
+import Post from './post/post.js'
 import './routes.js'
 
 sequelize.sync(()=>{ console.log('Mysql database listenning in port 3306') })
