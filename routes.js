@@ -8,7 +8,7 @@ app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 app.use(express.static('css'))
 
-app.get('/', (rq, res)=>{
+app.get('/', (req, res)=>{
     fetch("https://api.ipify.org/?format=json").then(response=>{
         response.json().then(data=>{
             connection.query(`SELECT * FROM users WHERE ip = '${data['ip']}'`, (results, fields)=>{
@@ -22,7 +22,13 @@ app.get('/', (rq, res)=>{
             })
         })
     })
-    // res.json({
-    //     message: 'Success'
-    // })
+    // message: success
+})
+
+app.get('/:nome', (req, res)=>{
+    const nome = req.params.nome
+    console.log(nome)
+    res.json({
+        user: nome
+    })
 })
