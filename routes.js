@@ -13,13 +13,11 @@ app.get('/', (rq, res)=>{
         response.json().then(data=>{
             connection.query(`SELECT * FROM users WHERE ip = '${data['ip']}'`, (results, fields)=>{
                 if(fields[0]['ip'] === data['ip']){
-                    res.json({
-                        status: "success"
-                    })
+                    // { status: success }
+                    res.redirect(`/${fields[0]['nome']}`)
                 } else {
-                    res.json({
-                        status: "error"
-                    })
+                    // { status: error }
+                    res.redirect('/cadastrar')
                 }
             })
         })
