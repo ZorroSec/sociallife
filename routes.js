@@ -8,7 +8,12 @@ app.use(express.json())
 app.use(express.static('css'))
 
 app.get('/', (rq, res)=>{
-    res.json({
-        message: 'Success'
+    fetch("https://api.ipify.org/?format=json").then(response=>{
+        response.json().then(data=>{
+            res.json(data)
+        })
     })
+    // res.json({
+    //     message: 'Success'
+    // })
 })
