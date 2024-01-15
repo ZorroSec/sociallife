@@ -29,6 +29,21 @@ app.get('/', (req, res)=>{
 
 app.route('/cadastro').get((req, res)=>{
     res.render('cadastro')
+}).post((req, res)=>{
+    function onclick(){
+        const nome = req.body.nome
+        const email = req.body.email
+        const senha = req.body.senha
+        const descricao = req.body.descricao
+        const data = {
+            nome: nome,
+            email: email,
+            senha: senha,
+            descricao: descricao
+        }
+        console.log(data)
+    }
+    res.render('cadastro', { onclick: onclick() })
 })
 
 app.get("/:nome", (req, res)=>{
