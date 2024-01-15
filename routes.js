@@ -72,5 +72,9 @@ app.get('/termos-de-uso', (req, res)=>{
 
 app.get("/:nome", (req, res)=>{
     const nome = req.params.nome
-    res.render('home', { nome: nome })
+    connection.query(`SELECT * FROM railway.posts`, (results, fields)=>{
+        console.log(fields)
+        res.render('home', { nome: nome, posts: fields })
+    })
+    
 })

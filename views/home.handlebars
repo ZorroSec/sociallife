@@ -5,15 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <title>Social life</title>
+    <style>
+        div.titulo strong a{
+            text-decoration: none;
+        }
+        div.titulo strong a:hover{
+            text-decoration: underline black;
+        }
+    </style>
 </head>
 <body>
     <header class="p-3 m-3 border-bottom">
         <div class="container">
             <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
                 <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 link-body-emphasis text-decoration-none">
-                    <h3>
-                        Social life
-                    </h3>
+                    <h5>
+                        Sociallife
+                    </h5>
                 </a>
                 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-mb-0">
                     <li><a href="/recentes" class="nav-link px-2 link-secondary">recentes</a></li>
@@ -40,5 +48,21 @@
             </div>
         </div>
     </header>
+    <div class="container">
+        {{#each posts}}
+            <div class="titulo">
+                <strong>
+                    {{id}}. <a href="/{{nome}}/{{titulo}}" class="text-dark">{{titulo}}</a>
+                </strong>
+            </div>
+            <div class="infoUser text-muted">
+                <p class="form-text text-muted">
+                    <a href="/user/{{nome}}" class="text-dark">{{nome}}</a>
+                    {{dataPost}}
+                </p>
+                
+            </div>
+        {{/each}}
+    </div>
 </body>
 </html>
