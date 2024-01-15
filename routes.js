@@ -1,11 +1,11 @@
-import express from 'express'
-import app from "./config/config.js";
-import connection from "./models/database.js";
-import User from './users/user.js';
-import Post from './post/post.js';
-import { engine } from 'express-handlebars';
-
-app.engine('handlebars', engine({ defaultLayout: 'main', layoutsDir: 'views/layouts' }));
+const express = require('express')
+const app = require("./config/config.js");
+const connection = require("./models/database.js")
+const User = require('./users/user.js');
+const Post = require('./post/post.js')
+const exbhs = require('express-handlebars')
+const path = require('path')
+app.engine('handlebars', exbhs.engine({ defaultLayout: 'main', layoutsDir: path.join(__dirname + '/views/layouts') }));
 app.set('view engine', 'handlebars');
 app.set('views', './views');
 app.use(express.urlencoded({ extended: false }))

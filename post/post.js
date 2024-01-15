@@ -1,5 +1,7 @@
-import { Sequelize, DataTypes } from "sequelize";
-import sequelize from "../sequelize/sequelize.js";
+// import { Sequelize, DataTypes } from "sequelize";
+// import sequelize from "../sequelize/sequelize.js";
+const { Sequelize, DataTypes } = require('sequelize')
+const sequelize = require('../sequelize/sequelize.js')
 
 const Post = sequelize.define('posts', {
     id: {
@@ -26,4 +28,4 @@ const Post = sequelize.define('posts', {
     }
 })
 
-export default Post
+module.exports = Post
