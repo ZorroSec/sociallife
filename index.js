@@ -10,7 +10,7 @@ const path = require('path')
 require('./routes.js')
 app.engine('handlebars', exbhs.engine({ defaultLayout: 'main', layoutsDir: path.join(__dirname + '/views/layouts') }));
 app.set('view engine', 'handlebars');
-app.set('views', './views');
+app.set('views', path.join(__dirname + "/views"));
 
 sequelize.sync(()=>{ console.log('Mysql database listenning in port 3306') })
 app.listen(3000, ()=>{

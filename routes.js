@@ -7,7 +7,7 @@ const exbhs = require('express-handlebars')
 const path = require('path')
 app.engine('handlebars', exbhs.engine({ defaultLayout: 'main', layoutsDir: path.join(__dirname + '/views/layouts') }));
 app.set('view engine', 'handlebars');
-app.set('views', './views');
+app.set('views', path.join(__dirname + "/views"))
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 
