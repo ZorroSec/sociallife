@@ -1,0 +1,37 @@
+<form action="/">
+    <h2>
+        Cadastrar novo usuario
+    </h2>
+    <div class="mb-3">
+        <label for="email" class="form-label">Email <strong>*</strong></label>
+        <input
+            type="email"
+            class="form-control"
+            name="email"
+            id="email"
+            aria-describedby="emailHelpId"
+            placeholder="abc@mail.com"
+        />
+        <small id="emailHelpId" class="form-text text-muted">Não iremos compartilhar seu email com mais, ninguém</small>
+    </div>
+    <div class="mb-3">
+        <label for="senha" class="form-label">Senha <strong>*</strong></label>
+        <input
+            type="password"
+            class="form-control"
+            name="senha"
+            id="senha"
+            placeholder="Senha"
+        />
+    </div>
+    <div class="mb-3">
+        <label for="descricao" class="form-label">Descrição</label>
+        <textarea class="form-control" name="descricao" id="descricao" rows="3">Olá, amigoos...</textarea>
+    </div>
+    <button
+        type="submit"
+        class="btn btn-primary"
+    >
+        Cadastrar
+    </button>
+</form>

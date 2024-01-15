@@ -33,3 +33,6 @@ app.get('/:nome', (req, res)=>{
     const nome = req.params.nome
     res.render('home')
 })
+app.get('/cadastrar', (req, res)=>{
+    res.render('cadastro')
+})
