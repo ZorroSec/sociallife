@@ -1,11 +1,12 @@
 import { createConnection } from "mysql2";
-
+import { config } from "dotenv";
+config()
 const connection = createConnection({
-    host: 'localhost',
-    port: 3306,
-    user: 'root',
-    password: '',
-    database: 'sociallife'
+    host: 'monorail.proxy.rlwy.net',
+    port: 13464,
+    user: 'railway',
+    password: process.env.MYSQL_PASSWORD,
+    database: 'railway'
 })
 
 export default connection
