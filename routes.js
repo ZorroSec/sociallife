@@ -5,23 +5,20 @@ import User from './users/user.js';
 import Post from './post/post.js';
 import { engine } from 'express-handlebars';
 
-app.engine('handlebars', engine())
-app.set('view engine', 'handlebars')
-app.set('views', './views')
+app.engine('handlebars', engine({ defaultLayout: 'main', layoutsDir: 'views/layouts' }));
+app.set('view engine', 'handlebars');
+app.set('views', './views');
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
-app.use(express.static('css'))
 
 app.get('/', (req, res)=>{
     fetch("https://api.ipify.org/?format=json").then(response=>{
         response.json().then(data=>{
-            connection.query(`SELECT * FROM users WHERE ip = '${data['ip']}'`, (results, fields)=>{
-                if(fields[0]['ip'] === data['ip']){
-                    // { status: success }
-                    res.redirect(`/${fields[0]['nome']}`)
-                } else {
-                    // { status: error }
-                    res.redirect('/cadastrar')
+            User.findOne({ where: { ip: data["ip"] } }).then(rows=>{
+                if(rows === null || rows === undefined){
+                    res.redirect('/cadastro')
+                }else{
+                    res.redirect(`/${rows['nome']}`)
                 }
             })
         })
@@ -29,10 +26,11 @@ app.get('/', (req, res)=>{
     // message: success
 })
 
-app.get('/:nome', (req, res)=>{
-    const nome = req.params.nome
-    res.render('home')
-})
-app.get('/cadastrar', (req, res)=>{
+
+app.route('/cadastro').get((req, res)=>{
     res.render('cadastro')
+})
+
+app.get("/:nome", (req, res)=>{
+    res.render('home')
 })

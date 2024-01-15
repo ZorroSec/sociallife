@@ -1,37 +1,40 @@
-<form action="/">
-    <h2>
-        Cadastrar novo usuario
-    </h2>
-    <div class="mb-3">
-        <label for="email" class="form-label">Email <strong>*</strong></label>
-        <input
-            type="email"
-            class="form-control"
-            name="email"
-            id="email"
-            aria-describedby="emailHelpId"
-            placeholder="abc@mail.com"
-        />
-        <small id="emailHelpId" class="form-text text-muted">Não iremos compartilhar seu email com mais, ninguém</small>
-    </div>
-    <div class="mb-3">
-        <label for="senha" class="form-label">Senha <strong>*</strong></label>
-        <input
-            type="password"
-            class="form-control"
-            name="senha"
-            id="senha"
-            placeholder="Senha"
-        />
-    </div>
-    <div class="mb-3">
-        <label for="descricao" class="form-label">Descrição</label>
-        <textarea class="form-control" name="descricao" id="descricao" rows="3">Olá, amigoos...</textarea>
-    </div>
-    <button
-        type="submit"
-        class="btn btn-primary"
-    >
-        Cadastrar
-    </button>
-</form>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <title>Social life</title>
+</head>
+<body>
+    <form action="/cadastrar" method="POST">
+        <h2>
+            Cadastrar novo usuario
+        </h2>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email <strong>*</strong></label>
+            <input
+                type="email"
+                class="form-control"
+                name="email"
+                id="email"
+                aria-describedby="emailHelpId"
+                placeholder="abc@mail.com"
+            />
+            <small id="emailHelpId" class="form-text text-muted">Não iremos compartilhar seu email com mais, ninguém</small>
+        </div>
+        <div class="mb-3">
+            <label for="senha" class="form-label">Senha <strong>*</strong></label>
+            <input
+                type="password" class="form-control" name="senha" id="senha" placeholder="Senha" />
+        </div>
+        <div class="mb-3">
+            <label for="descricao" class="form-label">Descrição</label>
+            <textarea class="form-control" name="descricao" id="descricao" rows="3">Olá, amigoos...</textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">
+            Cadastrar
+        </button>
+    </form>
+</body>
+</html>
