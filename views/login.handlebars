@@ -1,0 +1,42 @@
+<div class="container mt-3">
+    <form action="">
+        <h2>
+            Entrar em uma conta
+        </h2>
+        <div class="mb-3">
+            <p class="form-text text-muted"><strong>Campos marcados com asterisco (*) são obrigatorios</strong></p>        
+        </div>
+        {{{validationMsg}}}
+        <div class="mb-3">
+            <label for="email" class="form-label">Email <strong>*</strong></label>
+            <input
+                type="email"
+                class="form-control"
+                name="email"
+                id="email"
+                aria-describedby="emailHelpId"
+                placeholder="abc@mail.com"
+            />
+            <small id="emailHelpId" class="form-text text-muted">Não iremos compartilhar seu email com main, ninguém.</small>
+        </div>
+        <div class="mb-3">
+            <label for="senha" class="form-label">Password</label>
+            <input
+                type="password"
+                class="form-control"
+                name="senha"
+                id="senha"
+                placeholder="Sua senha..."
+            />
+        </div>
+        <button
+            type="submit"
+            class="btn btn-success"
+        >
+            Entrar
+        </button>
+        
+        
+        
+    </form>
+</div>

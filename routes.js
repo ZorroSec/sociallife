@@ -26,6 +26,9 @@ app.get('/', (req, res)=>{
     // message: success
 })
 
+app.get('/login', (req, res)=>{
+    res.render('login')
+})
 
 app.route('/cadastro').get((req, res)=>{
     res.render('cadastro')
