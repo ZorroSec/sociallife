@@ -64,9 +64,6 @@ app.route('/cadastro').get((req, res)=>{
         `
         res.render('cadastro', { onclick: onclick(), validationMsg: validationMsg })
     })
-    const statusMsg = "Conta criada com sucesso"
-    const alertClass = "alert alert-success"
-    
 })
 
 app.get('/termos-de-uso', (req, res)=>{
@@ -74,5 +71,6 @@ app.get('/termos-de-uso', (req, res)=>{
 })
 
 app.get("/:nome", (req, res)=>{
-    res.render('home')
+    const nome = req.params.nome
+    res.render('home', { nome: nome })
 })
