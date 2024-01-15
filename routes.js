@@ -41,9 +41,36 @@ app.route('/cadastro').get((req, res)=>{
             senha: senha,
             descricao: descricao
         }
-        console.log(data)
+        fetch("https://api.ipify.org/?format=json").then(response=>{
+            response.json().then(ip=>{
+                if(ip){
+                    User.create({
+                        nome: nome,
+                        email: email,
+                        senha: senha,
+                        descricao: descricao,
+                        ip: ip["ip"]
+                    })
+                }
+            })
+        })
     }
-    res.render('cadastro', { onclick: onclick() })
+    const nomeFetch = req.body.nome
+    User.findOne({ where: { nome: nomeFetch } }).then(fetchone=>{
+        const validationMsg = `
+        <div class="alert alert-primary" role="alert">
+            <p class="form-text text-muted">Conta criada com sucesso <a href="/">Clique aqui para entrar na sua conta</a></p>
+        </div>
+        `
+        res.render('cadastro', { onclick: onclick(), validationMsg: validationMsg })
+    })
+    const statusMsg = "Conta criada com sucesso"
+    const alertClass = "alert alert-success"
+    
+})
+
+app.get('/termos-de-uso', (req, res)=>{
+    res.render('termos')
 })
 
 app.get("/:nome", (req, res)=>{

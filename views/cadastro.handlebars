@@ -7,6 +7,9 @@
             <p class="form-text text-muted"><strong>Campos marcados com asterisco (*) são obrigatorios</strong></p>
             
         </div>
+        {{{validationMsg}}}
+        
+        
         <div class="mb-3">
             <label for="nome" class="form-label">Nome <strong>*</strong></label>
             <input type="text" name="nome" id="nome" class="form-control" placeholder="Seu nome" aria-describedby="nameHelp">
@@ -33,6 +36,9 @@
         <div class="mb-3">
             <label for="descricao" class="form-label">Descrição</label>
             <textarea class="form-control" name="descricao" id="descricao" rows="3">Olá, amigoos...</textarea>
+        </div>
+        <div class="mb-3 d-flex justify-content-center">
+            <p class="form-text">Já tem uma conta? clique <a href="/login">Aqui</a> ara acessar a sua conta.</p>
         </div>
         <button type="submit" class="btn btn-success" onclick="{{ onClick }}">
             Cadastrar
