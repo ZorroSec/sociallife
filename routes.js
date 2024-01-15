@@ -1,9 +1,13 @@
 import express from 'express'
 import app from "./config/config.js";
 import connection from "./models/database.js";
+import User from './users/user.js';
 import Post from './post/post.js';
-import fetchIp from './ip/fetchIp.js';
+import { engine } from 'express-handlebars';
 
+app.engine('handlebars', engine())
+app.set('view engine', 'handlebars')
+app.set('views', './views')
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 app.use(express.static('css'))
@@ -27,8 +31,5 @@ app.get('/', (req, res)=>{
 
 app.get('/:nome', (req, res)=>{
     const nome = req.params.nome
-    console.log(nome)
-    res.json({
-        user: nome
-    })
+    res.render('home')
 })
