@@ -7,6 +7,7 @@ const sequelize = require('./sequelize/sequelize.js')
 const Post = require('./post/post.js')
 const exbhs = require('express-handlebars')
 const path = require('path')
+const { marked } = require("marked")
 require('./routes.js')
 app.engine('handlebars', exbhs.engine({ defaultLayout: 'main', layoutsDir: path.join(__dirname + '/views/layouts') }));
 app.set('view engine', 'handlebars');

@@ -5,6 +5,7 @@ const User = require('./users/user.js');
 const Post = require('./post/post.js')
 const exbhs = require('express-handlebars')
 const path = require('path')
+const { marked } = require("marked")
 app.engine('handlebars', exbhs.engine({ defaultLayout: 'main', layoutsDir: path.join(__dirname + '/views/layouts') }));
 app.set('view engine', 'handlebars');
 app.set('views', path.join(__dirname + "/views"))
@@ -64,8 +65,28 @@ app.post('/login', (req, res)=>{
     })
 })
 
+app.get('/sucesso', (req, res)=>{
+    res.render('post/created')
+})
+
 app.get('/:nome/publicar', (req, res)=>{
     res.render('add', { nome: req.params.nome })
+})
+
+app.post('/:nome/publicar', (req, res)=>{
+    const nome = req.params.nome
+    const titulo = req.body.titulo
+    const post = marked(req.body.post)
+    const fonte = req.body.fonte
+    console.log(post)
+    Post.create({
+        nome: nome,
+        titulo: titulo,
+        post: post,
+        dataPost: Date(),
+        fonte: fonte
+    })
+    res.redirect(`/sucesso`)
 })
 
 app.route('/cadastro').get((req, res)=>{
