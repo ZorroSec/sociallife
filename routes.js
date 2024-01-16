@@ -59,7 +59,12 @@ app.post('/:nome/:id/comentar', (req, res)=>{
         comentario: comentario,
         dataComentario: Date()
     })
-    res.render('post/comentar', { id: id, nome: nome })
+    const success = `
+<div class="alert alert-success" role="alert">
+    Comentario publicado!! Clique <a href="/${nome}/${id}">Aqui</a> para voltar ao post.
+</div>
+    `
+    res.render('post/comentar', { id: id, nome: nome, success: success })
 })
 
 app.get('/', (req, res)=>{
