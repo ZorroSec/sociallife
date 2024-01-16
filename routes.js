@@ -37,10 +37,11 @@ app.post("/:nome/publicar", (req, res)=>{
 app.get('/:nome/:id', (req, res)=>{
     const id = req.params.id
     const nome = req.params.nome
+    const nomeUser = req.params.nome
     connection.query(`SELECT * FROM railway.posts WHERE id = '${id}'`, (results, fields)=>{
         connection.query(`SELECT * FROM railway.comentarios WHERE idpost = '${id}'`, (resu, fiel)=>{
             console.log(fields)
-            res.render('post/post', { id: id, nome: nome, fields: fields, comentarios: fiel })
+            res.render('post/post', { nomeUser: nomeUser, id: id, nome: nome, fields: fields, comentarios: fiel })
         })
     })
 })
