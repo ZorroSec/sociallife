@@ -30,6 +30,40 @@ app.get('/login', (req, res)=>{
     res.render('login')
 })
 
+app.post('/login', (req, res)=>{
+    // function onClick(){
+    //     const email = req.body.email
+    //     const senha = req.body.senha
+    //     console.log(email)
+    //     User.findOne({ where: { email: email, senha: senha} }).then(result=>{
+    //         if(result === null || result === undefined){
+    //             const validationMsg = `
+    //             <div class="alert alert-danger" role="alert">
+    //                 <p class="form-text text-muted">Conta criada com sucesso <a href="/">Clique aqui para entrar na sua conta</a></p>
+    //             </div>
+    //             `
+    //             res.render('login', {validationMsg:validationMsg})
+    //         }
+    //     })
+    // }
+    const email = req.body.email
+    console.log(email)
+    User.findOne({ where: { email: email } }).then(user=>{
+        try{
+            if(user['email'] === email){
+                fetch("https://api.ipify.org/?format=json").then((response)=>{
+                    response.json().then((data)=>{
+                        User.update({ ip: data['ip'] }, { where: { id: user['id'] } })
+                        res.redirect('/')
+                    })
+                })
+            }
+        }catch{
+            res.redirect('/login')
+        }
+    })
+})
+
 app.route('/cadastro').get((req, res)=>{
     res.render('cadastro')
 }).post((req, res)=>{
