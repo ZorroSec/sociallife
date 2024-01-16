@@ -6,6 +6,7 @@ const Post = require('./post/post.js')
 const exbhs = require('express-handlebars')
 const path = require('path')
 const { marked } = require("marked")
+const Comentario = require("./comentarios/comentarios.js")
 app.engine('handlebars', exbhs.engine({ defaultLayout: 'main', layoutsDir: path.join(__dirname + '/views/layouts') }));
 app.set('view engine', 'handlebars');
 app.set('views', path.join(__dirname + "/views"))
@@ -38,8 +39,27 @@ app.get('/:nome/:id', (req, res)=>{
     const nome = req.params.nome
     connection.query(`SELECT * FROM railway.posts WHERE id = '${id}'`, (results, fields)=>{
         console.log(fields)
-        res.render('post/post', { nome: nome, fields: fields })
+        res.render('post/post', { id: id, nome: nome, fields: fields })
     })
+})
+
+app.get('/:nome/:id/comentar', (req, res)=>{
+    const nome = req.params.nome
+    const id = req.params.id
+    res.render('post/comentar', { id: id, nome: nome })
+})
+
+app.post('/:nome/:id/comentar', (req, res)=>{
+    const id = req.params.id
+    const nome = req.params.nome
+    const comentario = req.body.comentario
+    Comentario.create({
+        idpost: id,
+        nome: nome,
+        comentario: comentario,
+        dataComentario: Date()
+    })
+    res.render('post/comentar', { id: id, nome: nome })
 })
 
 app.get('/', (req, res)=>{
