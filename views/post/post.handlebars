@@ -53,13 +53,17 @@
     <div class="container mb-3 mt-3 form-control p-4 nav nav-pills">
         <a href="/{{nome}}/{{id}}/comentar" class="nav-link active">Responder</a>
     </div>
-    {{#each comentarios}}
-        <div class="user">
-            <a href="/user/{{nome}}">{{nome}}</a>
-            {{dataComentario}}
-        </div>
-        <div class="comentario">
-            {{{comentario}}}
-        </div>
-    {{/each}}
+    <div class="container">
+        {{#each comentarios}}
+            <div class="container mb-3 p-3 comentary form-control">
+                <div class="user">
+                    <a href="/user/{{nome}}">{{nome}}</a>
+                    {{dataComentario}}
+                </div>
+                <div class="container comentario">
+                    {{{comentario}}}
+                </div>
+            </div>
+        {{/each}}
+    </div>
 </div> 

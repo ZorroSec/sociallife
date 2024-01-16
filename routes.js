@@ -38,8 +38,10 @@ app.get('/:nome/:id', (req, res)=>{
     const id = req.params.id
     const nome = req.params.nome
     connection.query(`SELECT * FROM railway.posts WHERE id = '${id}'`, (results, fields)=>{
-        console.log(fields)
-        res.render('post/post', { id: id, nome: nome, fields: fields })
+        connection.query(`SELECT * FROM railway.comentarios WHERE idpost = '${id}'`, (resu, fiel)=>{
+            console.log(fields)
+            res.render('post/post', { id: id, nome: nome, fields: fields, comentarios: fiel })
+        })
     })
 })
 
@@ -56,7 +58,7 @@ app.post('/:nome/:id/comentar', (req, res)=>{
     Comentario.create({
         idpost: id,
         nome: nome,
-        comentario: comentario,
+        comentario: marked(comentario),
         dataComentario: Date()
     })
     const success = `
