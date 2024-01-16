@@ -65,8 +65,13 @@ app.post('/login', (req, res)=>{
     })
 })
 
-app.get('/sucesso', (req, res)=>{
-    res.render('post/created')
+app.get('/:nome/:id', (req, res)=>{
+    const id = req.params.id
+    const nome = req.params.nome
+    connection.query(`SELECT * FROM railway.posts WHERE id = '${id}'`, (results, fields)=>{
+        console.log(fields)
+        res.render('post/post', { nome: nome, fields: fields })
+    })
 })
 
 app.get('/:nome/publicar', (req, res)=>{
@@ -86,7 +91,7 @@ app.post('/:nome/publicar', (req, res)=>{
         dataPost: Date(),
         fonte: fonte
     })
-    res.redirect(`/sucesso`)
+    res.redirect(`/`)
 })
 
 app.route('/cadastro').get((req, res)=>{
