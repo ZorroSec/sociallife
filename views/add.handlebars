@@ -42,9 +42,9 @@
             <input type="text" name="titulo" id="titulo" class="form-control">
         </div>
         <div class="mb-2">
-            <label for="post" class="form-label">Publicação</label>
+            <label for="post" class="form-label">Publicação <strong>*</strong></label>
             <div class="form-control">
-                <div class="embed-controls" style="font-size: 20px; display: flex; align-items: center; justify-content: space-evenly; padding: 10px">
+                <div class="embed-controls" style="font-size: 20px; display: flex; align-items: center; justify-content: space-evenly; padding: 10px; font-weigth: bold;">
                     <div id="bold">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-type-bold" viewBox="0 0 16 16">
                             <path d="M8.21 13c2.106 0 3.412-1.087 3.412-2.823 0-1.306-.984-2.283-2.324-2.386v-.055a2.176 2.176 0 0 0 1.852-2.14c0-1.51-1.162-2.46-3.014-2.46H3.843V13zM5.908 4.674h1.696c.963 0 1.517.451 1.517 1.244 0 .834-.629 1.32-1.73 1.32H5.908V4.673zm0 6.788V8.598h1.73c1.217 0 1.88.492 1.88 1.415 0 .943-.643 1.449-1.832 1.449H5.907z"/>
@@ -60,7 +60,7 @@
                             <path d="M12 12a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1h-1.388q0-.527.062-1.054.093-.558.31-.992t.559-.683q.34-.279.868-.279V3q-.868 0-1.52.372a3.3 3.3 0 0 0-1.085.992 4.9 4.9 0 0 0-.62 1.458A7.7 7.7 0 0 0 9 7.558V11a1 1 0 0 0 1 1zm-6 0a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1H4.612q0-.527.062-1.054.094-.558.31-.992.217-.434.559-.683.34-.279.868-.279V3q-.868 0-1.52.372a3.3 3.3 0 0 0-1.085.992 4.9 4.9 0 0 0-.62 1.458A7.7 7.7 0 0 0 3 7.558V11a1 1 0 0 0 1 1z"/>
                         </svg>
                     </div>
-                    <div id="achor">
+                    <div id="anchor">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
                             <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1 1 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4 4 0 0 1-.128-1.287z"/>
                             <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243z"/>
@@ -98,5 +98,46 @@
             <label for="fonte" class="form-label">Fonte</label>
             <input type="text" name="fonte" id="fonte" class="form-control" placeholder="https://exemplo.site/artigos">
         </div>
+        <div class="mb-3" style="float: right;">
+            <button type="submit" class="btn btn-success">
+                Publicar
+            </button>
+        </div>
     </form>
 </div>
+<script>
+    const bold = document.getElementById("bold")
+    const italic = document.getElementById("italic")
+    const quotation = document.getElementById("quotation")
+    const anchor = document.getElementById("anchor")
+    const code = document.getElementById("code")
+    const codeblock = document.getElementById("codeblock")
+    const listUl = document.getElementById("listUl")
+    const listOl = document.getElementById("listOl")
+    const postText = document.getElementById("post")
+    bold.addEventListener('click', ()=>{
+        postText.value += `****`
+    })
+    italic.addEventListener('click', ()=>{
+        postText.value += `**`
+    })
+    quotation.addEventListener('click', ()=>{
+        postText.value += `> **`
+    })
+    anchor.addEventListener('click', ()=>{
+        postText.value += "[_](url)"
+    })
+    code.addEventListener('click', ()=>{
+        postText.value += "``"
+    })
+    codeblock.addEventListener('click', ()=>{
+        postText.value += "``"
+    })
+    listUl.addEventListener('click', ()=>{
+        postText.value += "- "
+    })
+    listOl.addEventListener('click', ()=>{
+        postText.value += "1. "
+    })
+    
+</script>

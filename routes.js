@@ -65,7 +65,7 @@ app.post('/login', (req, res)=>{
 })
 
 app.get('/:nome/publicar', (req, res)=>{
-    res.render('add')
+    res.render('add', { nome: req.params.nome })
 })
 
 app.route('/cadastro').get((req, res)=>{
