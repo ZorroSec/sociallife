@@ -25,6 +25,10 @@ const Post = sequelize.define('posts', {
     dataPost: {
         type: DataTypes.DATE,
         allowNull: false
+    },
+    fonte: {
+        type: DataTypes.STRING,
+        allowNull: false
     }
 })
 
