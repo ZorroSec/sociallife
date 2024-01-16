@@ -91,6 +91,9 @@
                     </div>
                 </div>
                 <textarea class="form-control" name="post" id="post" style="height: 214px;" rows="3"></textarea>
+                <div class="contador">
+                    <p>Caracteres <span id="numero-caractere">0</span>/60000</p>
+                </div>
             </div>
             
         </div>
@@ -115,6 +118,15 @@
     const listUl = document.getElementById("listUl")
     const listOl = document.getElementById("listOl")
     const postText = document.getElementById("post")
+
+    const numeroCaractere = postText.value.length
+    postText.addEventListener("input", function(){
+        var caracteres = this.value.length;
+
+        var contador = document.querySelector("#numero-caractere");
+        contador.innerHTML = caracteres;
+     });
+
     bold.addEventListener('click', ()=>{
         postText.value += `****`
     })

@@ -12,10 +12,40 @@ app.set('views', path.join(__dirname + "/views"))
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 
+
+
+app.get("/:nome/publicar", (req, res)=>{
+    const nome = req.params.nome
+    res.render('post/publicar', { nome: nome })
+})
+app.post("/:nome/publicar", (req, res)=>{
+    const nome = req.params.nome
+    const titulo = req.body.titulo
+    const post = marked(req.body.post)
+    const fonte = req.body.fonte
+    console.log(post)
+    Post.create({
+        nome: nome,
+        titulo: titulo,
+        post: post,
+        dataPost: Date(),
+        fonte: fonte
+    })
+})
+
+app.get('/:nome/:id', (req, res)=>{
+    const id = req.params.id
+    const nome = req.params.nome
+    connection.query(`SELECT * FROM railway.posts WHERE id = '${id}'`, (results, fields)=>{
+        console.log(fields)
+        res.render('post/post', { nome: nome, fields: fields })
+    })
+})
+
 app.get('/', (req, res)=>{
-    fetch("https://api.ipify.org/?format=json").then(response=>{
+    fetch("http://ip-api.com/json/").then(response=>{
         response.json().then(data=>{
-            User.findOne({ where: { ip: data["ip"] } }).then(rows=>{
+            User.findOne({ where: { ip: data["query"] } }).then(rows=>{
                 if(rows === null || rows === undefined){
                     res.redirect('/cadastro')
                 }else{
@@ -65,34 +95,8 @@ app.post('/login', (req, res)=>{
     })
 })
 
-app.get('/:nome/:id', (req, res)=>{
-    const id = req.params.id
-    const nome = req.params.nome
-    connection.query(`SELECT * FROM railway.posts WHERE id = '${id}'`, (results, fields)=>{
-        console.log(fields)
-        res.render('post/post', { nome: nome, fields: fields })
-    })
-})
 
-app.get('/:nome/publicar', (req, res)=>{
-    res.render('add', { nome: req.params.nome })
-})
 
-app.post('/:nome/publicar', (req, res)=>{
-    const nome = req.params.nome
-    const titulo = req.body.titulo
-    const post = marked(req.body.post)
-    const fonte = req.body.fonte
-    console.log(post)
-    Post.create({
-        nome: nome,
-        titulo: titulo,
-        post: post,
-        dataPost: Date(),
-        fonte: fonte
-    })
-    res.redirect(`/`)
-})
 
 app.route('/cadastro').get((req, res)=>{
     res.render('cadastro')

@@ -13,7 +13,7 @@ app.engine('handlebars', exbhs.engine({ defaultLayout: 'main', layoutsDir: path.
 app.set('view engine', 'handlebars');
 app.set('views', path.join(__dirname + "/views"));
 
-sequelize.sync(()=>{ console.log('Mysql database listenning in port 3306') })
+
 app.listen(3000, ()=>{
     console.log('Server listening in port 3000')
 })
