@@ -64,7 +64,7 @@ app.post('/login', (req, res)=>{
     })
 })
 
-app.get('/:nome/add', (req, res)=>{
+app.get('/:nome/publicar', (req, res)=>{
     res.render('add')
 })
 
