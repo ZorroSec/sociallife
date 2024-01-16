@@ -64,6 +64,10 @@ app.post('/login', (req, res)=>{
     })
 })
 
+app.get('/:nome/add', (req, res)=>{
+    res.render('add')
+})
+
 app.route('/cadastro').get((req, res)=>{
     res.render('cadastro')
 }).post((req, res)=>{
@@ -106,7 +110,6 @@ app.route('/cadastro').get((req, res)=>{
 app.get('/termos-de-uso', (req, res)=>{
     res.render('termos')
 })
-
 app.get("/:nome", (req, res)=>{
     const nome = req.params.nome
     connection.query(`SELECT * FROM railway.posts`, (results, fields)=>{
