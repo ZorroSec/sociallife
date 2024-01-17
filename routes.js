@@ -20,6 +20,14 @@ app.get('/:nome/config', (req, res)=>{
     })
 })
 
+app.post('/:nome/config', (req, res)=>{
+    const descricao = req.body.descricao
+    const nome = req.params.nome
+    User.update(
+        { descricao: descricao }, { where: { nome: nome } }
+    )
+    res.redirect(`/${nome}/config`)
+})
 
 app.get("/:nome/publicar", (req, res)=>{
     const nome = req.params.nome
