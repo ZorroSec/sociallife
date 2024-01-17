@@ -15,7 +15,9 @@ app.use(express.json())
 
 app.get('/:nome/config', (req, res)=>{
     const nome = req.params.nome
-    res.render('user/edit', { nome: nome })
+    connection.query(`SELECT * FROM railway.users WHERE nome = '${nome}'`, (results, fields)=>{
+        res.render("user/edit", { nome: nome, user: fields })
+    })
 })
 
 
