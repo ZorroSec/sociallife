@@ -13,6 +13,10 @@ app.set('views', path.join(__dirname + "/views"))
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 
+app.get('/:nome/config', (req, res)=>{
+    const nome = req.params.nome
+    res.render('user/edit', { nome: nome })
+})
 
 
 app.get("/:nome/publicar", (req, res)=>{
@@ -45,6 +49,7 @@ app.get('/:nome/:id', (req, res)=>{
         })
     })
 })
+
 
 app.get('/:nome/:id/comentar', (req, res)=>{
     const nome = req.params.nome
